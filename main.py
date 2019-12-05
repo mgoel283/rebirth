@@ -26,16 +26,16 @@ class Button:
 
 def display_help():
     tkinter.Tk().wm_withdraw()
-    messagebox.showinfo("How to Play", 'You start in "The Heavenly Highway"! Scroll in the text box to learn more '
-                                       'about where you are.\n\nPress >ROLL to take the next step '
+    messagebox.showinfo("How to Play", 'You start in "The Heavenly Highway"!\n\nPress >ROLL to take the next step '
                                        'in your journey to Nirvana. Reference the map on the right to see your '
-                                       'progress.\n\nIf you end up in "Vajra Hell" or "Cessation in '
+                                       'progress. Scroll in the text box to learn more about your location.'
+                                       '\n\nIf you end up in "Vajra Hell" or "Cessation in '
                                        'the Vehicle of the Disciples," certain conditions must be met before you can '
                                        'leave.')
 
 
 # for each button check if it was pressed
-def do_roll(mouse_pos):
+def do_press(mouse_pos):
     global scroll
     global hell_rolls
     for b in buttons:
@@ -85,21 +85,12 @@ def draw(num):
     # Main text
     draw_text(screen, texts[player.curr_pos], WHITE, [20, 50, 550, 300], scroll)
 
-    block_size = 30
-    # grid
-    for y in range(13):
-        for x in range(8):
-            rect = pygame.Rect((x + 18) * (block_size + 4.15), (y + 2.15) * (block_size + 9), block_size, block_size)
-            pos = (13 - (y + 1)) * 8 + (x + 1)
-            if pos == 104:  # Nirvana
-                pygame.draw.rect(screen, (230, 184, 0), rect)
-            elif pos == 1 or pos == 48:  # hells
-                pygame.draw.rect(screen, (138, 21, 56), rect)
-            elif pos == player.curr_pos:  # player
-                pygame.draw.rect(screen, (57, 83, 189), rect)
-            else:
-                pygame.draw.rect(screen, (71, 72, 84), rect)
+    draw_grid()
 
+    if player.curr_pos != 1 and player.curr_pos != 48:
+        draw_options()
+
+    # Roll and help button/ Win text rendering
     for b in buttons:
         if b.enabled:
             if player.curr_pos != 104:
@@ -113,6 +104,7 @@ def draw(num):
                 screen.blit(text, [b.rect[0] + 140, b.rect[1] + 45])
                 screen.blit(text2, [b.rect[0] + 154, b.rect[1] + 80])
 
+    # Hell Logic
     if player.curr_pos == 1 or player.curr_pos == 48:
         need_1 = 1 - hell_rolls.count(1)
         if need_1 < 0:
@@ -162,6 +154,23 @@ def intersperse(lst, item):
     return [' '] + result
 
 
+def draw_grid():
+    block_size = 30
+    # grid
+    for y in range(13):
+        for x in range(8):
+            rect = pygame.Rect((x + 18) * (block_size + 4.15), (y + 2.15) * (block_size + 9), block_size, block_size)
+            pos = (13 - (y + 1)) * 8 + (x + 1)
+            if pos == 104:  # Nirvana
+                pygame.draw.rect(screen, (230, 184, 0), rect)
+            elif pos == 1 or pos == 48:  # hells
+                pygame.draw.rect(screen, (138, 21, 56), rect)
+            elif pos == player.curr_pos:  # player
+                pygame.draw.rect(screen, (57, 83, 189), rect)
+            else:
+                pygame.draw.rect(screen, (71, 72, 84), rect)
+
+
 def draw_text(surface, txt, color, rect, scr):
     y = rect[1]
     line_spacing = 2
@@ -199,6 +208,10 @@ def draw_text(surface, txt, color, rect, scr):
             text = text[i:]
 
     return None
+
+
+def draw_options():
+    pass
 
 
 def load_conf():
@@ -252,7 +265,7 @@ if __name__ == "__main__":
                 mouse_p = pygame.mouse.get_pos()
                 # left click
                 if event.button == 1:
-                    num = do_roll(mouse_p)
+                    num = do_press(mouse_p)
                 # scroll wheel
                 if event.button == 4:
                     if scroll > 0:
