@@ -30,8 +30,8 @@ def display_help():
                         'You start in "The Heavenly Highway"!\n\nPick an available action or tempt fate and '
                         'press >ROLL to take the next step in your journey to Nirvana.\n\nReference the map on the '
                         'right to see your progress (you are the green square). Scroll through the text box to learn '
-                        'more about your current location. \n\nIf you end up in "Vajra Hell" or "Cessation in the '
-                        'Vehicle of the Disciples", certain conditions must be met before you can leave.')
+                        'more about your current location. \n\nIf you end up in "Vajra Hell" or "Cessation'
+                        '", certain conditions must be met before you can leave.')
 
 
 def do_press(mouse_pos):
@@ -237,7 +237,7 @@ def draw_options():
                 picked = int(b.name[1])
                 opt_text = '-----'
                 if picked in moves[player.curr_pos]:
-                    opt_text = str(options[moves[player.curr_pos][picked]])
+                    opt_text = options[moves[player.curr_pos][picked]]
                 text = my_font.render(b.name + ' ' + opt_text, True, [255, 255, 255])
                 screen.blit(text, [b.rect[0] + 15, b.rect[1] + 15])
 
