@@ -1,486 +1,104 @@
-2:
-  1: 17
-  2: 10
-  3: 3
-3:
-  1: 11
-  2: 10
-  3: 8
-  4: 7
-  5: 5
-  6: 2
-4:
-  1: 13
-  2: 10
-  3: 8
-  4: 6
-  5: 5
-  6: 3
-5:
-  1: 13
-  2: 11
-  3: 10
-  4: 7
-  5: 4
-  6: 3
-6:
-  1: 17
-  2: 12
-  3: 10
-  4: 8
-  5: 5
-  6: 4
-7:
-  1: 15
-  2: 18
-  3: 11
-  4: 10
-  5: 6
-  6: 5
-8:
-  1: 27
-  2: 19
-  3: 14
-  4: 11
-  5: 7
-  6: 6
-9:
-  1: 42
-  2: 34
-10:
-  1: 19
-  2: 13
-  3: 14
-  4: 11
-  5: 8
-  6: 4
-11:
-  1: 27
-  2: 17
-  3: 12
-  4: 13
-  5: 10
-  6: 5
-12:
-  1: 28
-  2: 27
-  3: 15
-  4: 21
-  5: 11
-  6: 10
-13:
-  1: 28
-  2: 27
-  3: 15
-  4: 21
-  5: 11
-  6: 10
-14:
-  1: 25
-  2: 42
-  3: 17
-  4: 15
-  5: 5
-  6: 3
-15:
-  1: 28
-  2: 14
-  3: 21
-  4: 11
-  5: 10
-  6: 4
-16:
-  1: 34
-17:
-  1: 52
-  2: 25
-  3: 26
-  4: 38
-  5: 22
-  6: 6
-18:
-  1: 38
-  2: 27
-  3: 13
-  4: 21
-  5: 11
-  6: 10
-19:
-  1: 43
-  2: 38
-  3: 13
-  4: 15
-  5: 13
-  6: 11
-20:
-  1: 28
-  2: 27
-  3: 17
-  4: 19
-  5: 15
-21:
-  1: 15
-  2: 62
-  3: 13
-  4: 11
-  5: 10
-  6: 2
-22:
-  1: 52
-  2: 62
-  3: 13
-  4: 15
-  5: 11
-  6: 3
-23:
-  1: 52
-  2: 65
-  3: 29
-  4: 27
-  5: 14
-  6: 4
-24:
-  1: 27
-  2: 17
-  3: 15
-  4: 11
-  5: 10
-  6: 6
-25:
-  1: 72
-  2: 33
-  3: 38
-26:
-  1: 29
-  2: 28
-  3: 17
-  4: 20
-  5: 13
-  6: 13
-27:
-  1: 28
-  2: 17
-  3: 23
-  4: 18
-  5: 10
-  6: 6
-28:
-  1: 29
-  2: 17
-  3: 20
-  4: 22
-  5: 11
-  6: 7
-29:
-  1: 30
-  2: 31
-  3: 17
-  4: 23
-  5: 12
-  6: 10
-30:
-  1: 64
-  2: 63
-  3: 55
-  4: 54
-  5: 53
-  6: 52
-31:
-  1: 52
-  2: 30
-  3: 43
-  4: 32
-  5: 22
-  6: 12
-32:
-  1: 30
-  2: 35
-  3: 28
-  4: 18
-  5: 10
-33:
-  1: 41
-  2: 42
-  3: 16
-  4: 1
-34:
-  1: 61
-  2: 81
-  3: 70
-35:
-  1: 37
-  2: 52
-  3: 36
-  4: 30
-  5: 17
-  6: 27
-36:
-  1: 38
-  2: 17
-  3: 11
-  4: 4
-37:
-  1: 64
-  2: 54
-  3: 32
-  4: 52
-  5: 12
-38:
-  1: 37
-  2: 40
-  3: 39
-  4: 52
-  5: 11
-  6: 5
-39:
-  1: 52
-  2: 43
-  3: 40
-  4: 52
-  5: 28
-  6: 19
-40:
-  1: 30
-  2: 35
-  3: 28
-  4: 32
-  5: 31
-  6: 29
-41:
-  1: 60
-  2: 42
-  3: 59
-  4: 67
-  5: 33
-42:
-  1: 49
-  2: 50
-  3: 59
-43:
-  1: 52
-  2: 44
-  3: 28
-  4: 38
-  5: 13
-  6: 6
-44:
-  1: 30
-  2: 46
-  3: 45
-  4: 20
-  5: 39
-  6: 27
-45:
-  1: 52
-  2: 47
-  3: 46
-  4: 40
-  5: 17
-  6: 28
-46:
-  1: 30
-  2: 47
-  3: 37
-  4: 35
-  5: 51
-  6: 29
-47:
-  1: 52
-  2: 48
-  3: 30
-  4: 37
-49:
-  1: 50
-  2: 57
-50:
-  1: 57
-  2: 66
-51:
-  1: 52
-  2: 48
-  3: 37
-52:
-  1: 54
-  2: 53
-  3: 30
-  4: 38
-  5: 11
-  6: 7
-53:
-  1: 55
-  2: 54
-  3: 37
-  4: 40
-  5: 15
-  6: 8
-54:
-  1: 63
-  2: 55
-  3: 60
-  4: 59
-55:
-  1: 63
-  2: 56
-56:
-  1: 64
-  2: 63
-57:
-  1: 66
-  2: 73
-  3: 58
-  4: 77
-58:
-  1: 73
-  2: 74
-  3: 66
-  4: 85
-59:
-  1: 63
-  2: 50
-  3: 60
-  4: 49
-  5: 42
-  6: 55
-60:
-  1: 64
-  2: 63
-  3: 42
-61:
-  1: 89
-  2: 84
-  3: 83
-62:
-  1: 52
-  2: 38
-63:
-  1: 85
-  2: 42
-  3: 64
-  4: 77
-64:
-  1: 71
-  2: 49
-  3: 77
-65:
-  1: 52
-  2: 43
-  3: 15
-  4: 8
-66:
-  1: 74
-  2: 75
-  3: 73
-67:
-  1: 41
-  2: 42
-  3: 68
-  4: 69
-68:
-  1: 42
-  2: 49
-  3: 59
-  4: 41
-69:
-  1: 75
-  2: 81
-70:
-  1: 86
-  2: 73
-  3: 34
-  4: 74
-  5: 71
-71:
-  1: 79
-  2: 80
-  3: 74
-72:
-  1: 67
-  2: 41
-  3: 33
-73:
-  1: 75
-  2: 81
-  3: 69
-74:
-  1: 75
-  2: 81
-75:
-  1: 82
-  2: 83
-  3: 81
-76:
-  1: 78
-  2: 74
-  3: 73
-77:
-  1: 71
-  2: 74
-78:
-  1: 87
-  2: 88
-79:
-  1: 88
-  2: 78
-80:
-  1: 78
-  2: 79
-81:
-  1: 83
-  2: 89
-82:
-  1: 89
-  2: 90
-83:
-  1: 84
-  2: 91
-84:
-  1: 93
-85:
-  1: 71
-  2: 73
-  3: 76
-86:
-  1: 95
-  2: 96
-87:
-  1: 96
-  2: 86
-88:
-  1: 95
-  2: 87
-89:
-  1: 84
-  2: 90
-90:
-  1: 84
-  2: 91
-91:
-  1: 84
-  2: 93
-92:
-  1: 97
-93:
-  1: 92
-94:
-  1: 93
-  2: 84
-95:
-  1: 94
-  2: 84
-96:
-  1: 94
-  2: 95
-97:
-  1: 98
-98:
-  1: 99
-99:
-  1: 100
-100:
-  1: 101
-101:
-  1: 102
-102:
-  1: 103
-103:
-  1: 104
+1: "Vajra Hell"
+2: "Interminable Hell"
+3: "The Hot and Very Hot Hells"
+4: "The Howling and Great Howling Hells"
+5: "The Black Rope and Crushing Hells"
+6: "Reviving Hell"
+7: "The Cold Hells"
+8: "The Temporary Hells, or \"Hell for a Day\""
+9: "Lord of the Dead (Yama)"
+10: "Hungry Ghosts (Preta)"
+11: "Animals"
+12: "Divine Animals"
+13: "World of the Nagas"
+14: "Demon Island"
+15: "Asuras"
+16: "Rudra Black Freedom"
+17: "Jambu Island - The Southern Continent"
+18: "The Western Continent - Enjoyment of Cattle"
+19: "The Eastern Continent - Noble Figure"
+20: "The Northern Continent - Kuru"
+21: "Barbarism"
+22: "Hinduism"
+23: "Bon"
+24: "The Heavenly Highway"
+25: "Beginning the Tantra"
+26: "Wheel-Turning King (Cakravartin)"
+27: "Heaven of the Four Great Kings"
+28: "Heaven of the Thirty-three"
+29: "Heaven without Fighting"
+30: "The Joyful Heaven"
+31: "Delighting in Emanations"
+32: "Ruling the Emanations of Others"
+33: "Tantra, Lesser Path of Accumulation"
+34: "Mahakala"
+35: "The Realm of Form"
+36: "The Formless Realm"
+37: "Pure Abodes"
+38: "Disciples, Path of Accumulation"
+39: "Disciples, Path of Application"
+40: "Disciples, Paths of Vision and Cultivation"
+41: "Tantra, Middle Path of Accumulation"
+42: "Tantra, Greater Path of Accumulation"
+43: "Independent Buddha, Path of Accumulation"
+44: "Independent Buddha, Path of Application"
+45: "Independent Buddha, Path of Vision"
+46: "Independent Buddha, Path of Cultivation"
+47: "Independent Buddha, Arhatship"
+48: "Cessation"
+49: "Tantra, Path of Application"
+50: "Tantra, Path of Application: \"Climax\""
+51: "Disciples, Arhatship"
+52: "Mahayana, Lesser Path of Accumulation"
+53: "Mahayana, Middle Path of Accumulation"
+54: "Mahayana, Greater Path of Accumulation"
+55: "Mahayana, Path of Application: \"Heat\""
+56: "Mahayana, Path of Application: \"Climax\""
+57: "Tantra, Path of Application: \"Receptivity\""
+58: "Tantra, Path of Application: \"Highest Teachings\""
+59: "Shambhala"
+60: "Potala"
+61: "Urgyan"
+62: "Hindu Wisdom-Holder"
+63: "Mahayana, Path of Application: \"Receptivity\""
+64: "Mahayana, Application: \"Highest Teachings\""
+65: "Wisdom-Holder of the Bon Tradition"
+66: "First Tantra Stage"
+67: "Wisdom-Holder Among the Gods of Sense Desire"
+68: "Wisdom-Holder of the Realm of Form"
+69: "Tantric Wheel-Turning King"
+70: "Realm of Action-Completion"
+71: "First Sutra Stage"
+72: "Wisdom-Holder of the Eighth Siddhis"
+73: "Second Tantra Stage"
+74: "Third Tantra Stage"
+75: "Fourth Tantra Stage"
+76: "Realm of Jeweled Peaks"
+77: "Land of Bliss"
+78: "Fourth Sutra Stage"
+79: "Third Sutra Stage"
+80: "Second Sutra Stage"
+81: "Fifth Tantra Stage"
+82: "Sixth Tantra Stage"
+83: "Seventh Tantra Stage"
+84: "Supreme Heaven"
+85: "Realm of Superjoy"
+86: "Seventh Sutra Stage"
+87: "Sixth Sutra Stage"
+88: "Fifth Sutra Stage"
+89: "Eighth Tantra Stage"
+90: "Ninth Tantra Stage"
+91: "Tenth Tantra Stage"
+92: "Great Enjoyment Body"
+93: "Great Dharma Body"
+94: "Tenth Sutra Stage"
+95: "Ninth Sutra Stage"
+96: "Eighth Sutra Stage"
+97: "Adopting a Physical Form"
+98: "The Setting Forth"
+99: "Ascetic Practices"
+100: "Conquest Mara"
+101: "Buddhahood"
+102: "Turning the Wheel of Dharma"
+103: "Demonstration of Miracles"
+104: "Ascend"

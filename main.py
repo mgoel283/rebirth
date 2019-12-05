@@ -26,15 +26,14 @@ class Button:
 
 def display_help():
     tkinter.Tk().wm_withdraw()
-    messagebox.showinfo("How to Play", 'You start in "The Heavenly Highway"!\n\nPress >ROLL to take the next step '
-                                       'in your journey to Nirvana. Reference the map on the right to see your '
-                                       'progress. Scroll in the text box to learn more about your location.'
-                                       '\n\nIf you end up in "Vajra Hell" or "Cessation in '
-                                       'the Vehicle of the Disciples," certain conditions must be met before you can '
-                                       'leave.')
+    messagebox.showinfo("How to Play",
+                        'You start in "The Heavenly Highway"!\n\nPick an available action or tempt fate and '
+                        'press >ROLL to take the next step in your journey to Nirvana.\n\nReference the map on the '
+                        'right to see your progress (you are the green square). Scroll through the text box to learn '
+                        'more about your current location. \n\nIf you end up in "Vajra Hell" or "Cessation in the '
+                        'Vehicle of the Disciples", certain conditions must be met before you can leave.')
 
 
-# for each button check if it was pressed
 def do_press(mouse_pos):
     global scroll
     global hell_rolls
@@ -48,7 +47,7 @@ def do_press(mouse_pos):
 
             if b.name in opt_btns:
                 picked = int(b.name[1])
-                if picked in options[player.curr_pos]:
+                if picked in moves[player.curr_pos]:
                     player.curr_pos = moves[player.curr_pos][picked]
                     return
                 else:  # invalid
@@ -94,8 +93,10 @@ def draw(num):
     # Main text
     draw_text(screen, texts[player.curr_pos], WHITE, [20, 50, 550, 300], scroll)
 
+    # progress grid
     draw_grid()
 
+    # option buttons
     if player.curr_pos != 1 and player.curr_pos != 48:
         draw_options()
 
@@ -109,9 +110,11 @@ def draw(num):
                 screen.blit(text, [b.rect[0] + 15, b.rect[1] + 15])
             elif b.name == ">ROLL AND BE REBORN":
                 text = my_font.render("You've attained Nirvana!", True, BLACK)
-                text2 = my_font.render("Restart to play again", True, BLACK)
+                text2 = my_font.render("Generate a new soul to play again", True, BLACK)
+                text3 = my_font.render("(restart the game)", True, BLACK)
                 screen.blit(text, [b.rect[0] + 140, b.rect[1] + 45])
-                screen.blit(text2, [b.rect[0] + 154, b.rect[1] + 80])
+                screen.blit(text2, [b.rect[0] + 90, b.rect[1] + 90])
+                screen.blit(text3, [b.rect[0] + 170, b.rect[1] + 110])
 
     # Hell Logic
     if player.curr_pos == 1 or player.curr_pos == 48:
@@ -170,14 +173,20 @@ def draw_grid():
         for x in range(8):
             rect = pygame.Rect((x + 18) * (block_size + 4.15), (y + 2.15) * (block_size + 9), block_size, block_size)
             pos = (13 - (y + 1)) * 8 + (x + 1)
-            if pos == 104:  # Nirvana
+
+            if player.curr_pos == 104:  # flood screen
                 pygame.draw.rect(screen, (230, 184, 0), rect)
-            elif pos == 1 or pos == 48:  # hells
-                pygame.draw.rect(screen, (138, 21, 56), rect)
-            elif pos == player.curr_pos:  # player
-                pygame.draw.rect(screen, (57, 83, 189), rect)
             else:
-                pygame.draw.rect(screen, (71, 72, 84), rect)
+                if pos == player.curr_pos:  # player
+                    pygame.draw.rect(screen, (40, 128, 60), rect)
+                elif pos == 104:  # Nirvana
+                    pygame.draw.rect(screen, (230, 184, 0), rect)
+                elif pos == 1 or pos == 48:  # hells
+                    pygame.draw.rect(screen, (138, 21, 56), rect)
+                elif pos == 54:  # checkpoint
+                    pygame.draw.rect(screen, (57, 83, 189), rect)
+                else:
+                    pygame.draw.rect(screen, (71, 72, 84), rect)
 
 
 def draw_text(surface, txt, color, rect, scr):
@@ -226,9 +235,9 @@ def draw_options():
                 pygame.draw.line(screen, b.color, [b.rect[0], int(0.5 * (2 * b.rect[1] + b.rect[3]))],
                                  [b.rect[0] + b.rect[2], int(0.5 * (2 * b.rect[1] + b.rect[3]))], b.rect[3])
                 picked = int(b.name[1])
-                opt_text = ''
-                if picked in options[player.curr_pos]:
-                    opt_text = str(options[player.curr_pos][picked])
+                opt_text = '-----'
+                if picked in moves[player.curr_pos]:
+                    opt_text = str(options[moves[player.curr_pos][picked]])
                 text = my_font.render(b.name + ' ' + opt_text, True, [255, 255, 255])
                 screen.blit(text, [b.rect[0] + 15, b.rect[1] + 15])
 
@@ -254,14 +263,14 @@ if __name__ == "__main__":
     # setup and render
     player = Player(1)
     buttons = [
-        Button('>ROLL AND BE REBORN', [20, 370, 260, 50], [125, 125, 125], True),
-        Button('>HOW TO PLAY', [300, 370, 260, 50], [125, 125, 125], True),
-        Button('>1', [20, 430, 260, 50], [125, 125, 125], True),
-        Button('>2', [20, 485, 260, 50], [125, 125, 125], True),
-        Button('>3', [20, 540, 260, 50], [125, 125, 125], True),
-        Button('>4', [300, 430, 260, 50], [125, 125, 125], True),
-        Button('>5', [300, 485, 260, 50], [125, 125, 125], True),
-        Button('>6', [300, 540, 260, 50], [125, 125, 125], True),
+        Button('>ROLL AND BE REBORN', [20, 370, 275, 50], [90, 90, 90], True),
+        Button('>HOW TO PLAY', [310, 370, 275, 50], [90, 90, 90], True),
+        Button('>1', [20, 430, 275, 50], [125, 125, 125], True),
+        Button('>2', [20, 485, 275, 50], [125, 125, 125], True),
+        Button('>3', [20, 540, 275, 50], [125, 125, 125], True),
+        Button('>4', [310, 430, 275, 50], [125, 125, 125], True),
+        Button('>5', [310, 485, 275, 50], [125, 125, 125], True),
+        Button('>6', [310, 540, 275, 50], [125, 125, 125], True),
     ]
 
     BLACK = (0, 0, 0)
