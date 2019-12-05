@@ -12,7 +12,7 @@ if getattr(sys, 'frozen', False):
 class Player:
     def __init__(self, num):
         self.num = num
-        self.curr_pos = 1
+        self.curr_pos = 24
         self.visited = set()
 
 
@@ -44,7 +44,16 @@ def do_press(mouse_pos):
                 (mouse_pos[1] > b.rect[1]) and
                 (mouse_pos[1] < b.rect[1] + b.rect[3])):
 
-            if b.name == ">HOW TO PLAY":
+            opt_btns = ('>1', '>2', '>3', '>4', '>5', '>6')
+
+            if b.name in opt_btns:
+                picked = int(b.name[1])
+                if picked in options[player.curr_pos]:
+                    player.curr_pos = moves[player.curr_pos][picked]
+                    return
+                else:  # invalid
+                    return
+            elif b.name == ">HOW TO PLAY":
                 display_help()
                 return
 
@@ -91,7 +100,7 @@ def draw(num):
         draw_options()
 
     # Roll and help button/ Win text rendering
-    for b in buttons:
+    for b in (buttons[0], buttons[1]):
         if b.enabled:
             if player.curr_pos != 104:
                 pygame.draw.line(screen, b.color, [b.rect[0], int(0.5 * (2 * b.rect[1] + b.rect[3]))],
@@ -211,7 +220,17 @@ def draw_text(surface, txt, color, rect, scr):
 
 
 def draw_options():
-    pass
+    for b in buttons[2:]:
+        if b.enabled:
+            if player.curr_pos != 104:
+                pygame.draw.line(screen, b.color, [b.rect[0], int(0.5 * (2 * b.rect[1] + b.rect[3]))],
+                                 [b.rect[0] + b.rect[2], int(0.5 * (2 * b.rect[1] + b.rect[3]))], b.rect[3])
+                picked = int(b.name[1])
+                opt_text = ''
+                if picked in options[player.curr_pos]:
+                    opt_text = str(options[player.curr_pos][picked])
+                text = my_font.render(b.name + ' ' + opt_text, True, [255, 255, 255])
+                screen.blit(text, [b.rect[0] + 15, b.rect[1] + 15])
 
 
 def load_conf():
@@ -221,8 +240,10 @@ def load_conf():
         txts = yaml.load(text, Loader=yaml.FullLoader)
     with open('moves.yaml') as move:
         mvs = yaml.load(move, Loader=yaml.FullLoader)
+    with open('options.yaml') as opt:
+        opts = yaml.load(opt, Loader=yaml.FullLoader)
 
-    return ttls, txts, mvs
+    return ttls, txts, mvs, opts
 
 
 def roll():
@@ -233,8 +254,14 @@ if __name__ == "__main__":
     # setup and render
     player = Player(1)
     buttons = [
-        Button('>ROLL AND BE REBORN', [20, 375, 260, 50], [125, 125, 125], True),
-        Button('>HOW TO PLAY', [300, 375, 260, 50], [125, 125, 125], True)
+        Button('>ROLL AND BE REBORN', [20, 370, 260, 50], [125, 125, 125], True),
+        Button('>HOW TO PLAY', [300, 370, 260, 50], [125, 125, 125], True),
+        Button('>1', [20, 430, 260, 50], [125, 125, 125], True),
+        Button('>2', [20, 485, 260, 50], [125, 125, 125], True),
+        Button('>3', [20, 540, 260, 50], [125, 125, 125], True),
+        Button('>4', [300, 430, 260, 50], [125, 125, 125], True),
+        Button('>5', [300, 485, 260, 50], [125, 125, 125], True),
+        Button('>6', [300, 540, 260, 50], [125, 125, 125], True),
     ]
 
     BLACK = (0, 0, 0)
@@ -248,7 +275,7 @@ if __name__ == "__main__":
     my_font = pygame.font.SysFont("monospace", 20)
     bg_image = pygame.image.load('bg.png')
 
-    titles, texts, moves = load_conf()
+    titles, texts, moves, options = load_conf()
 
     # run game
     scroll = 0
