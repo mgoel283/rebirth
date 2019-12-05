@@ -2,6 +2,8 @@ import pygame
 import yaml
 import random
 import sys, os
+import tkinter
+from tkinter import messagebox
 
 if getattr(sys, 'frozen', False):
     os.chdir(sys._MEIPASS)
@@ -10,7 +12,7 @@ if getattr(sys, 'frozen', False):
 class Player:
     def __init__(self, num):
         self.num = num
-        self.curr_pos = 24
+        self.curr_pos = 1
         self.visited = set()
 
 
@@ -22,6 +24,16 @@ class Button:
         self.enabled = enabled
 
 
+def display_help():
+    tkinter.Tk().wm_withdraw()
+    messagebox.showinfo("How to Play", 'You start in "The Heavenly Highway"! Scroll in the text box to learn more '
+                                       'about where you are.\n\nPress >ROLL to take the next step '
+                                       'in your journey to Nirvana. Reference the map on the right to see your '
+                                       'progress.\n\nIf you end up in "Vajra Hell" or "Cessation in '
+                                       'the Vehicle of the Disciples," certain conditions must be met before you can '
+                                       'leave.')
+
+
 # for each button check if it was pressed
 def do_roll(mouse_pos):
     global scroll
@@ -31,6 +43,10 @@ def do_roll(mouse_pos):
                 (mouse_pos[0] < b.rect[0] + b.rect[2]) and
                 (mouse_pos[1] > b.rect[1]) and
                 (mouse_pos[1] < b.rect[1] + b.rect[3])):
+
+            if b.name == ">HOW TO PLAY":
+                display_help()
+                return
 
             if player.curr_pos == 1 or player.curr_pos == 48:  # hell conditions
                 num = roll()
@@ -91,7 +107,7 @@ def draw(num):
                                  [b.rect[0] + b.rect[2], int(0.5 * (2 * b.rect[1] + b.rect[3]))], b.rect[3])  #
                 text = my_font.render(b.name, True, [255, 255, 255])
                 screen.blit(text, [b.rect[0] + 15, b.rect[1] + 15])
-            else:
+            elif b.name == ">ROLL AND BE REBORN":
                 text = my_font.render("You've attained Nirvana!", True, BLACK)
                 text2 = my_font.render("Restart to play again", True, BLACK)
                 screen.blit(text, [b.rect[0] + 140, b.rect[1] + 45])
@@ -130,14 +146,14 @@ def draw(num):
         five_text = my_font.render("You need " + str(need_5) + " more 5's", True, BLACK)
         six_text = my_font.render("You need " + str(need_6) + " more 6's", True, BLACK)
 
-        screen.blit(one_text, [b.rect[0] + 15, b.rect[1] + 65])
-        screen.blit(two_text, [b.rect[0] + 15, b.rect[1] + 85])
-        screen.blit(thr_text, [b.rect[0] + 15, b.rect[1] + 105])
-        screen.blit(four_text, [b.rect[0] + 300, b.rect[1] + 65])
-        screen.blit(five_text, [b.rect[0] + 300, b.rect[1] + 85])
-        screen.blit(six_text, [b.rect[0] + 300, b.rect[1] + 105])
+        screen.blit(one_text, [b.rect[0] - 265, b.rect[1] + 110])
+        screen.blit(two_text, [b.rect[0] - 265, b.rect[1] + 135])
+        screen.blit(thr_text, [b.rect[0] - 265, b.rect[1] + 160])
+        screen.blit(four_text, [b.rect[0] + 15, b.rect[1] + 110])
+        screen.blit(five_text, [b.rect[0] + 15, b.rect[1] + 135])
+        screen.blit(six_text, [b.rect[0] + 15, b.rect[1] + 160])
 
-        screen.blit(roll_text, [b.rect[0] + 350, b.rect[1] + 15])
+        screen.blit(roll_text, [b.rect[0] - 80, b.rect[1] + 75])
 
 
 def intersperse(lst, item):
@@ -204,7 +220,8 @@ if __name__ == "__main__":
     # setup and render
     player = Player(1)
     buttons = [
-        Button('>ROLL AND BE REBORN', [20, 400, 260, 50], [125, 125, 125], True),
+        Button('>ROLL AND BE REBORN', [20, 375, 260, 50], [125, 125, 125], True),
+        Button('>HOW TO PLAY', [300, 375, 260, 50], [125, 125, 125], True)
     ]
 
     BLACK = (0, 0, 0)
@@ -226,6 +243,7 @@ if __name__ == "__main__":
     wait = False
     hell_rolls = []
     num = 0
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
