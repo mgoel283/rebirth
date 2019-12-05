@@ -1,7 +1,7 @@
 import pygame
 import yaml
 import random
-import sys, os
+import io, sys, os
 import tkinter
 from tkinter import messagebox
 
@@ -243,13 +243,13 @@ def draw_options():
 
 
 def load_conf():
-    with open('titles.yaml') as title:
+    with io.open('titles.yaml', mode='r', encoding='utf-8') as title:
         ttls = yaml.load(title, Loader=yaml.FullLoader)
-    with open('text.yaml') as text:
+    with io.open('text.yaml', mode='r', encoding='utf-8') as text:
         txts = yaml.load(text, Loader=yaml.FullLoader)
-    with open('moves.yaml') as move:
+    with io.open('moves.yaml', mode='r', encoding='utf-8') as move:
         mvs = yaml.load(move, Loader=yaml.FullLoader)
-    with open('options.yaml') as opt:
+    with io.open('options.yaml', mode='r', encoding='utf-8') as opt:
         opts = yaml.load(opt, Loader=yaml.FullLoader)
 
     return ttls, txts, mvs, opts
