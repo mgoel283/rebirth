@@ -21,14 +21,26 @@ class Button:
 # for each button check if it was pressed
 def do_roll(mouse_pos):
     global scroll
+    global hell_rolls
     for b in buttons:
         if ((mouse_pos[0] > b.rect[0]) and
                 (mouse_pos[0] < b.rect[0] + b.rect[2]) and
                 (mouse_pos[1] > b.rect[1]) and
                 (mouse_pos[1] < b.rect[1] + b.rect[3])):
 
-            #Check win
-            if player.curr_pos == 104:
+            if player.curr_pos == 1 or player.curr_pos == 48:  # hell conditions
+                num = roll()
+                hell_rolls.append(num)
+
+                if hell_rolls.count(1) >= 1 and hell_rolls.count(2) >= 2 and hell_rolls.count(3) >= 3 and \
+                        hell_rolls.count(4) >= 4 and hell_rolls.count(5) >= 5 and hell_rolls.count(6) >= 6:
+                    if player.curr_pos == 1:
+                        player.curr_pos = 9
+                    else:
+                        player.curr_pos = 52
+                    hell_rolls = []
+                return num
+            elif player.curr_pos == 104:  # Check win
                 print('you won!')
             else:
                 # change curr_pos here
@@ -43,7 +55,7 @@ def do_roll(mouse_pos):
             return b.name
 
 
-def draw():
+def draw(num):
     screen.blit(bg_image, (0, 0))
 
     # Floating title
@@ -57,8 +69,8 @@ def draw():
     # grid
     for y in range(13):
         for x in range(8):
-            rect = pygame.Rect((x+18)*(block_size+4.15), (y+2.15)*(block_size+9), block_size, block_size)
-            pos = (13-(y+1))*8 + (x+1)
+            rect = pygame.Rect((x + 18) * (block_size + 4.15), (y + 2.15) * (block_size + 9), block_size, block_size)
+            pos = (13 - (y + 1)) * 8 + (x + 1)
             if pos == 104:  # Nirvana
                 pygame.draw.rect(screen, (230, 184, 0), rect)
             elif pos == 1 or pos == 48:  # hells
@@ -70,10 +82,58 @@ def draw():
 
     for b in buttons:
         if b.enabled:
-            pygame.draw.line(screen, b.color, [b.rect[0], int(0.5 * (2 * b.rect[1] + b.rect[3]))],
-                             [b.rect[0] + b.rect[2], int(0.5 * (2 * b.rect[1] + b.rect[3]))], b.rect[3])  #
-            text = my_font.render(b.name, True, [255, 255, 255])
-            screen.blit(text, [b.rect[0] + 15, b.rect[1] + 15])
+            if player.curr_pos != 104:
+                pygame.draw.line(screen, b.color, [b.rect[0], int(0.5 * (2 * b.rect[1] + b.rect[3]))],
+                                 [b.rect[0] + b.rect[2], int(0.5 * (2 * b.rect[1] + b.rect[3]))], b.rect[3])  #
+                text = my_font.render(b.name, True, [255, 255, 255])
+                screen.blit(text, [b.rect[0] + 15, b.rect[1] + 15])
+            else:
+                text = my_font.render("You've attained Nirvana!", True, BLACK)
+                text2 = my_font.render("Restart to play again", True, BLACK)
+                screen.blit(text, [b.rect[0] + 140, b.rect[1] + 45])
+                screen.blit(text2, [b.rect[0] + 154, b.rect[1] + 80])
+
+    if player.curr_pos == 1 or player.curr_pos == 48:
+        need_1 = 1 - hell_rolls.count(1)
+        if need_1 < 0:
+            need_1 = 0
+
+        need_2 = 2 - hell_rolls.count(2)
+        if need_2 < 0:
+            need_2 = 0
+
+        need_3 = 3 - hell_rolls.count(3)
+        if need_3 < 0:
+            need_3 = 0
+
+        need_4 = 4 - hell_rolls.count(4)
+        if need_4 < 0:
+            need_4 = 0
+
+        need_5 = 5 - hell_rolls.count(5)
+        if need_5 < 0:
+            need_5 = 0
+
+        need_6 = 6 - hell_rolls.count(6)
+        if need_6 < 0:
+            need_6 = 0
+
+        roll_text = my_font.render("You rolled " + str(num), True, BLACK)
+        one_text = my_font.render("You need " + str(need_1) + " more 1's", True, BLACK)
+        two_text = my_font.render("You need " + str(need_2) + " more 2's", True, BLACK)
+        thr_text = my_font.render("You need " + str(need_3) + " more 3's", True, BLACK)
+        four_text = my_font.render("You need " + str(need_4) + " more 4's", True, BLACK)
+        five_text = my_font.render("You need " + str(need_5) + " more 5's", True, BLACK)
+        six_text = my_font.render("You need " + str(need_6) + " more 6's", True, BLACK)
+
+        screen.blit(one_text, [b.rect[0] + 15, b.rect[1] + 65])
+        screen.blit(two_text, [b.rect[0] + 15, b.rect[1] + 85])
+        screen.blit(thr_text, [b.rect[0] + 15, b.rect[1] + 105])
+        screen.blit(four_text, [b.rect[0] + 300, b.rect[1] + 65])
+        screen.blit(five_text, [b.rect[0] + 300, b.rect[1] + 85])
+        screen.blit(six_text, [b.rect[0] + 300, b.rect[1] + 105])
+
+        screen.blit(roll_text, [b.rect[0] + 350, b.rect[1] + 15])
 
 
 def intersperse(lst, item):
@@ -140,14 +200,14 @@ if __name__ == "__main__":
     # setup and render
     player = Player(1)
     buttons = [
-        Button('>ROLL AND BE REBORN', [20, 400, 260, 50], [125, 125, 125], True)
+        Button('>ROLL AND BE REBORN', [20, 400, 260, 50], [125, 125, 125], True),
     ]
 
-    background_colour = (0, 0, 0)
+    BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
     (width, height) = (900, 600)
     screen = pygame.display.set_mode((width, height))
-    screen.fill(background_colour)
+    screen.fill(BLACK)
     pygame.display.set_caption('Rebirth: The Tibetan Game of Liberation')
     pygame.font.init()
 
@@ -159,6 +219,9 @@ if __name__ == "__main__":
     # run game
     scroll = 0
     running = True
+    wait = False
+    hell_rolls = []
+    num = 0
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -167,7 +230,7 @@ if __name__ == "__main__":
                 mouse_p = pygame.mouse.get_pos()
                 # left click
                 if event.button == 1:
-                    do_roll(mouse_p)
+                    num = do_roll(mouse_p)
                 # scroll wheel
                 if event.button == 4:
                     if scroll > 0:
@@ -177,6 +240,6 @@ if __name__ == "__main__":
                         scroll += 1
 
         # game logic
-        screen.fill(background_colour)
-        draw()
+        screen.fill(BLACK)
+        draw(num)
         pygame.display.flip()
